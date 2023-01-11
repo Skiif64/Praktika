@@ -17,7 +17,7 @@ namespace lb_9_10_11_12TextSearching
             var kmpsResult = kmps.Search(text, key);
             var rksResult = rks.Search(text, key);
             var bmsResult = bms.Search(text, key);
-
+            
             Console.ReadLine();
 
         }
