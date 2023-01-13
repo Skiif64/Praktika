@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb-14Fractals", "Lb-14Fract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb-15Graph", "Lb-15Graph\Lb-15Graph.csproj", "{690AE25B-5483-48A0-A2F9-5AC4F17782B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToSEnd", "ToSEnd\ToSEnd.csproj", "{C344EC3E-AB0D-4BE5-B246-5831F93CA4A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb-23", "Lb-23\Lb-23.csproj", "{FAE14FC7-A1CB-4C7F-85A8-9412C121931F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,10 +77,10 @@ Global
 		{690AE25B-5483-48A0-A2F9-5AC4F17782B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{690AE25B-5483-48A0-A2F9-5AC4F17782B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{690AE25B-5483-48A0-A2F9-5AC4F17782B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C344EC3E-AB0D-4BE5-B246-5831F93CA4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C344EC3E-AB0D-4BE5-B246-5831F93CA4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C344EC3E-AB0D-4BE5-B246-5831F93CA4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C344EC3E-AB0D-4BE5-B246-5831F93CA4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAE14FC7-A1CB-4C7F-85A8-9412C121931F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAE14FC7-A1CB-4C7F-85A8-9412C121931F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAE14FC7-A1CB-4C7F-85A8-9412C121931F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAE14FC7-A1CB-4C7F-85A8-9412C121931F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

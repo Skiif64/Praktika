@@ -1,89 +1,90 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
-namespace Lb_1Pyramid
+namespace Lb_15Graph
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите n:");
-            var n = int.Parse(Console.ReadLine());
-            var array = FillRandom(new int[n], 1, 100);
-            Console.WriteLine("Исходный массив:");
-            Console.WriteLine(string.Join(", ", array));
-            var sortedArray = PyramidSorter.Sort(array);
-            Console.WriteLine("Отсортированный массив:");
-            Console.WriteLine(string.Join(", ", sortedArray));
+            using (var sr = new StreamReader("graph.txt"))
+            {
+                var src = sr.ReadToEnd();
+                var graph = Graph.Deserialize(src);
+                Console.WriteLine(graph);
+            }
+
             Console.ReadLine();
         }
+    }
 
-        public static int[] FillRandom(int[] array, int from, int to)
+    public class Graph
+    {
+        private readonly int[,] _graph;
+        public int Length => _graph.GetLength(0);
+
+        public Graph(int vertex)
         {
-            var random = new Random();
-            var n = array.Length;
-            for (int i = 0; i < n; i++)
-            {
-                array[i] = random.Next(from, to);
-            }
-            return array;
+            _graph = new int[vertex, vertex];
         }
 
-        class PyramidSorter
+        public void Insert(int fromIndex, int toIndex, int weight)
         {
-            private static int Heapify(int[] arr, int i, int n)
+            _graph[fromIndex, toIndex] = weight;
+            _graph[toIndex, fromIndex] = weight;
+        }
+
+        public string Serialize()
+        {
+            var n = _graph.GetLength(0);
+            string output = $"{n};{n}\n";
+            for (int i = 0; i < n; i++)
             {
-                int imax;
-                int buffer;
-                if ((2 * i + 2) < n)
+                for (int j = 0; j < n; j++)
                 {
-                    if (arr[2 * i + 1] > arr[2 * i + 2]) imax = 2 * i + 2;
-                    else imax = 2 * i + 1;
-                }
-                else imax = 2 * i + 1;
-                if (imax >= n) return i;
-                if (arr[i] > arr[imax])
-                {
-                    buffer = arr[i];
-                    arr[i] = arr[imax];
-                    arr[imax] = buffer;
-                    if (imax < n / 2) i = imax;
-                }
-                return i;
-            }
-
-            public static int[] Sort(int[] array)
-            {
-                var arr = array.ToArray();
-
-                var n = arr.Length;
-
-                for (int i = n / 2 - 1; i >= 0; --i)
-                {
-                    var iPrev = i;
-                    i = Heapify(arr, i, n);
-                    if (iPrev != i) ++i;
-                }
-
-
-                int buf;
-                for (int k = n - 1; k > 0; --k)
-                {
-                    buf = arr[0];
-                    arr[0] = arr[k];
-                    arr[k] = buf;
-                    int i = 0;
-                    var iPrev = -1;
-                    while (i != iPrev)
+                    if (_graph[i, j] > 0)
                     {
-                        iPrev = i;
-                        i = Heapify(arr, i, k);
+                        output += $"{i};{j};{_graph[i, j]}\n";
                     }
                 }
+            }
+            return output;
+        }
 
-                return arr;
+        public static Graph Deserialize(string source)
+        {
+            var rows = source.Split('\n');
+            var dimensions = rows[0].Split(';');
+            var vertex = int.Parse(dimensions[0]);
+
+            var graph = new Graph(vertex);
+            foreach (var row in rows.Skip(1))
+            {
+                if (string.IsNullOrWhiteSpace(row))
+                    break;
+                var cols = row.Split(';');
+                var fromIndex = int.Parse(cols[0]);
+                var toIndex = int.Parse(cols[1]);
+                var weight = int.Parse(cols[2]);
+                graph.Insert(fromIndex, toIndex, weight);
+            }
+            return graph;
+        }
+
+        public override string ToString()
+        {
+            var output = "";
+            for (int i = 0; i < Length; i++)
+            {
+                for (int j = 0; j < Length; j++)
+                {
+                    output += _graph[i, j] + " ";
+                }
+                output += '\n';
             }
 
+            return output;
         }
     }
 }
